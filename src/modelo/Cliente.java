@@ -22,8 +22,9 @@ public class Cliente {
         iniciar();
     }
 
+
     /**
-     * metodo run
+     * metodo para iniciar el socket
      */
     public void iniciar() {
 
@@ -51,7 +52,7 @@ public class Cliente {
 
                 out = new DataOutputStream(socketCliente.getOutputStream());
                 out.writeUTF(msj);
-                //out.close();
+                
 
             } catch (IOException ex) {
                 Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);

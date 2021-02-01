@@ -8,17 +8,29 @@ import java.util.logging.Logger;
 
 public class Asistente implements Runnable {
 
+    /**
+     * atributos de la clase asistente
+     */
     private Socket sc;
     private DataInputStream in;
     private Servidor server;
     private boolean centinela;
 
+    /**
+     * contructor de la clase
+     * 
+     * @param sc
+     * @param server 
+     */
     public Asistente(Socket sc, Servidor server) {
         this.sc = sc;
         this.server = server;
         this.centinela = true;
     }
 
+    /**
+     * metodo run
+     */
     @Override
     public void run() {
 
