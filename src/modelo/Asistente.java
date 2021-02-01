@@ -36,7 +36,7 @@ public class Asistente implements Runnable {
 
                     centinela = false;
 
-                    server.desconectarCliente(this);
+                    server.desconectarCliente("UN CLIENTE SE DESCONECTO");
                     in.close();
                     sc.close();
 

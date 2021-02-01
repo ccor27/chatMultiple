@@ -13,19 +13,21 @@ import views.ServidorView;
 
 public class Servidor extends Observable implements Runnable {
 
+    /**
+     * atributos de a clase servidor
+     */
     private ServerSocket server;
     private Socket sc;
     private int puerto;
-    private ArrayList<Asistente> listaClientes;
     private ServidorView vistaServidor;
 
+    //constructor de la clase
     public Servidor(int puerto) {
 
         this.puerto = puerto;
-        listaClientes = new ArrayList<>();
         
     }
-    
+   
     public void setVistaServidor(ServidorView vistaServidor){
         this.vistaServidor = vistaServidor;
     }
@@ -41,7 +43,6 @@ public class Servidor extends Observable implements Runnable {
                 sc = server.accept();
                 vistaServidor.notificarConexion("NUEVO CLIENTE CONECTADO");
                 Asistente asistente = new Asistente(sc, this);
-                listaClientes.add(asistente);
                 Thread t = new Thread(asistente);
                 t.start();
                 
@@ -53,6 +54,10 @@ public class Servidor extends Observable implements Runnable {
         }
     }
 
+    /**
+     * metodo con el cual notificamos a los observadores
+     * @param mensaje 
+     */
     public void notificacion(String mensaje) {
 
         //notifico los cambios a los observadores
@@ -61,9 +66,12 @@ public class Servidor extends Observable implements Runnable {
         this.clearChanged();
     }
 
-    public void desconectarCliente(Asistente asistente) {
-        vistaServidor.notificarConexion("UN CLIENTE SE DESCONECTO");
-        listaClientes.remove(asistente);
+    /**
+     * metodo para informar que un cliente se desconecto
+     * @param mensaje 
+     */
+    public void desconectarCliente(String mensaje) {
+        vistaServidor.notificarConexion(mensaje);
 
     }
 

@@ -8,20 +8,28 @@ import java.util.logging.Logger;
 
 public class Cliente {
 
+    /**
+     * atributos de la clase cliente
+     */
     private Socket socketCliente;
     private int puerto;
     private DataOutputStream out;
     final String HOST = "127.0.0.1";
 
+    //constructor de la clase
     public Cliente(int puerto) {
         this.puerto = puerto;
         iniciar();
     }
 
+    /**
+     * metodo run
+     */
     public void iniciar() {
 
         try {
 
+            //creo el socket
             socketCliente = new Socket(HOST, puerto);
 
         } catch (IOException ex) {
@@ -29,6 +37,10 @@ public class Cliente {
         }
     }
 
+    /**
+     * metodo con el cual enviamos un mensaje
+     * @param msj 
+     */
     public void enviarMensaje(String msj) {
 
         if (socketCliente.isClosed()) {
